@@ -1,0 +1,2 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+test('order link includes recipient, quantities and price confirmation',async()=>{const {getWhatsAppUrl}=await import('../src/whatsapp.js');const url=new URL(getWhatsAppUrl('order',{'risol-mayo':2,klepon:1}));assert.equal(url.pathname,'/6285607746031');const text=url.searchParams.get('text');assert.match(text,/2 × Risol Mayo/);assert.match(text,/1 × Klepon/);assert.match(text,/13.000/);assert.match(text,/konfirmasi/i)});
